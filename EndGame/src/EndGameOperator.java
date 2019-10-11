@@ -1,5 +1,6 @@
 
 public class EndGameOperator extends Operator{
+	
 
 	public EndGameOperator(double Cost, String type) {
 		super(Cost, type);
@@ -40,6 +41,7 @@ public class EndGameOperator extends Operator{
 		}
 		else if(this.Type.contentEquals("SNAP"))
 		{
+			
 			Child=ApplySnap(node);
 
 		}
@@ -78,7 +80,10 @@ public class EndGameOperator extends Operator{
 	}
 	public Node ApplySnap(Node n)
 	{
+		
+		//All stones taken ,whats the damage, inside Thanos's cell?
 		Node child=null;
+	
 		return child;
 	}
 	

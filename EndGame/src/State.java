@@ -1,5 +1,5 @@
 
-public class State  {
+public abstract class State  {
 
 	
 	public String StateRepresentation;
@@ -13,6 +13,8 @@ public class State  {
 		
 		return(this.StateRepresentation.equals(s.StateRepresentation));
 	}
+	
+	//public abstract void Represent();
 	
     public String  toString() {
     	

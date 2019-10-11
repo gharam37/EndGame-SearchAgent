@@ -14,7 +14,7 @@ public abstract class GenericProblem {
 	public static void main(String[]args) {
 	}
 	public abstract Boolean goalTest(Node N);
-	public abstract State NextState(State s,Operator o);
+	public abstract Node NextState(Node N,Operator o);
 	public abstract ArrayList<Node> ExpandNodes(Node parent,ArrayList<Operator> Operators);
 	//Take Grid and Represent it based on the type of search problem
 	public abstract State InitialState(String InitialRepresentation);
