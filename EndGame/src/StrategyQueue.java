@@ -6,6 +6,10 @@ public abstract class StrategyQueue {
 	public StrategyQueue(State InitialState)
 	{
 		this.InitialState=InitialState;
+		 this.States = new HashMap<String,Integer> ();
+	     Node FirstNode = new Node(this.InitialState);
+	     MakeQueue();
+	     AddNode(FirstNode);
 		
 	}
 	

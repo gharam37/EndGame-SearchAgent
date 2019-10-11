@@ -18,6 +18,10 @@ public class Node implements Comparable{
 		CurrentState=null;
 		
 	}
+	public Node(State CurrentState)
+	{
+		this.CurrentState=CurrentState;
+	}
 	public Node(Node Parent, State CurrentState,Operator Operator) {
 		this.Parent=Parent;
 		this.CurrentState=CurrentState;

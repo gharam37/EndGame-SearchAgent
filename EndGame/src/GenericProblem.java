@@ -15,7 +15,7 @@ public abstract class GenericProblem {
 	}
 	public abstract Boolean goalTest(Node N);
 	public abstract Node NextState(Node N,Operator o);
-	public abstract ArrayList<Node> ExpandNodes(Node parent,ArrayList<Operator> Operators);
+	public abstract ArrayList<Node> ExpandNodes(Node parent);
 	//Take Grid and Represent it based on the type of search problem
 	public abstract State InitialState(String InitialRepresentation);
 	
@@ -28,24 +28,36 @@ public abstract class GenericProblem {
 		}
 		else if(Strategy.contentEquals("DF"))
 		{
-			//To do Initialize a Depth First class not yet Implemented
+			//Todo Initialize a Depth First class not yet Implemented
 		}
 		int totalNodes=0;
 		while(!queue.isEmpty())
 		{
+			
 			Node currentNode=queue.RemoveFront();
 			if(currentNode==null) continue;
 			totalNodes++;
 			if(goalTest(currentNode))
 			{
-				System.out.println("Found solution");
+				System.out.println("Found solution ");
+				DisplaySolution(currentNode,totalNodes);
 				return;
 			}
-			ArrayList<Node> ExpandedNodes=ExpandNodes(currentNode,Operators);
+			if(Visualize)
+			{
+				currentNode.CurrentState.Visualize();
+			}
+			ArrayList<Node> ExpandedNodes=ExpandNodes(currentNode);
 			queue.EnqueueNodes(ExpandedNodes);
 		}
         System.out.println("No Solution was Found");
 	}
+	
+	void DisplaySolution(Node n,int totalNodes)
+	{
+		//TODO loop over n get parents until null, add costs , print totalNodes
+	}
+	
 	
 }
 

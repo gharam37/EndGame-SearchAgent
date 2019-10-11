@@ -97,6 +97,13 @@ public class EndGameState extends State{
 		System.out.println(s2);
 		
 	}
+
+
+	@Override
+	public void Visualize() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
