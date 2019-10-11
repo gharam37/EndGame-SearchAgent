@@ -4,27 +4,38 @@
   
 public class Node implements Comparable{
 	
-	//Node Parent;
-	double Cost;
-	CellType type;
-	boolean visited=false;
+	public Node Parent;
+	public double Cost;
+	public State CurrentState;
+	public Operator Operator; //What got us here
+	public int Depth;
+
 	public Node() {
 		
-		//this.Parent=null;
+		this.Parent=null;
 		this.Cost=0;
+		Operator=null;
+		CurrentState=null;
+		
 	}
-	public Node(CellType type,double Cost) {
-		//this.Parent=Parent;
-		this.type=type;
-		this.Cost=Cost;
+	public Node(Node Parent, State CurrentState,Operator Operator) {
+		this.Parent=Parent;
+		this.CurrentState=CurrentState;
+		this.Operator=Operator;
+		if(this.Parent==null)
+		{
+			Depth=0;
+			Cost=0;
+		}
+		else
+		{
+			Depth=Parent.Depth+1;
+			Cost=Parent.Cost+Operator.Cost;
+		}
 		
 	}
 	
-	public String  toString() {
-		
-		return type+"";
-		
-	}
+	//Compare cost of nodes for cost functions
 	public int compareTo(Object Node) {
 		
 		Node n = (Node) Node;
@@ -35,6 +46,12 @@ public class Node implements Comparable{
 		} else {
 			return -1;
 		}
+	}
+	
+    public String  toString() {
+    	return "{Node "+""+"State "+CurrentState+"Performed Operator "+Operator+"Cost "+Cost;
+		
+		
 	}
 
 }
