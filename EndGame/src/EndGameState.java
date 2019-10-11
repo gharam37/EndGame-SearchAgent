@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EndGameState extends State{
 
@@ -37,7 +38,7 @@ public class EndGameState extends State{
 		int initialWarriorY=38;
 		for(int i=0;i<5;i++)
 		{
-			if(StateRepresentation.charAt(initialWarriorX)!='k') //k for killed don't add to list
+			if(StateRepresentation.charAt(initialWarriorX)!='k' && StateRepresentation.charAt(initialWarriorY)!='k') //k for killed don't add to list
 			{
 			int WarriorX=Integer.parseInt(StateRepresentation.charAt(initialWarriorX)+"");
 			int WarriorY=Integer.parseInt(StateRepresentation.charAt(initialWarriorY)+"");
@@ -76,8 +77,24 @@ public class EndGameState extends State{
 	
 	public static void main(String[]args)
 	{
-		EndGameState s= new EndGameState("5,5;1,2;3,1;c,2,1,1,2,1,2,2,4,0,4,1;0,3,3,0,3,2,3,4,4,3");
-		System.out.println(s.StonesLocations);
+		EndGameState s1= new EndGameState("5,5;1,2;3,1;c,2,1,1,2,1,2,2,4,0,4,1;0,3,3,0,3,2,3,4,4,3");
+		
+		EndGameState s2= new EndGameState("5,5;1,2;3,1;c,2,1,1,2,1,2,2,4,0,4,1;0,3,3,0,3,2,3,4,4,3");
+
+		/*HashMap<String,Integer> States=new HashMap<String,Integer> ();
+		if(!States.containsKey(s1.StateRepresentation)) {
+			States.put(s1.StateRepresentation,-1 );
+
+		}
+		if(!States.containsKey(s2.StateRepresentation)) {
+			States.put(s2.StateRepresentation,-1 );
+
+		}
+		System.out.println(States.size());
+		*/
+
+		
+		System.out.println(s2);
 		
 	}
 	

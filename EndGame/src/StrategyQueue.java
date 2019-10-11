@@ -1,7 +1,7 @@
 import java.util.*;
 public abstract class StrategyQueue {
 	State InitialState;
-	HashMap<State,Integer> States=new HashMap<State,Integer> ();
+	HashMap<String,Integer> States=new HashMap<String,Integer> ();
 	
 	public StrategyQueue(State InitialState)
 	{
@@ -13,10 +13,6 @@ public abstract class StrategyQueue {
 
     public abstract Node RemoveFront();
 
-	public abstract void AddNode(Node n);
-
-	public abstract boolean isEmpty();
-	
 
 	
 	public void EnqueueNodes(ArrayList<Node> newNodes)
@@ -26,6 +22,11 @@ public abstract class StrategyQueue {
 			AddNode(newNodes.get(i));
 		}
 	}
+
+	public abstract void AddNode(Node n);
+
+	public abstract boolean isEmpty();
+	
 			
 	
 	
