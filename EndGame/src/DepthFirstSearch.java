@@ -1,33 +1,39 @@
+import java.util.Stack;
 
 public class DepthFirstSearch extends StrategyQueue{
+    private Stack<Node> Nodes;
+
 
 	public DepthFirstSearch(State InitialState) {
 		super(InitialState);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	void MakeQueue() {
-		// TODO Auto-generated method stub
+		
+		Nodes =new Stack<>();
 		
 	}
 
 	@Override
 	public Node RemoveFront() {
-		// TODO Auto-generated method stub
-		return null;
+		Node node=Nodes.pop();
+		if(States.containsKey(node.CurrentState.UniqueKey)) {
+			return null;
+		}
+		States.put(node.CurrentState.UniqueKey,node.CurrentState );
+		return node;
 	}
 
 	@Override
 	public void AddNode(Node n) {
-		// TODO Auto-generated method stub
+		Nodes.push(n);
 		
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return Nodes.isEmpty();
 	}
 
 }

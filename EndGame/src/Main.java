@@ -28,7 +28,7 @@ public class Main {
 		//String InitializeRepresentation="3,3;1,1;2,2;0,2;0,1";
 
 		
-		solve(InitializeRepresentation,"BF",false);
+		solve(InitializeRepresentation,"DF",false);
 		
 	}
 }
