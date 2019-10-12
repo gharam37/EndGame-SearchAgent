@@ -1,5 +1,5 @@
 
-public class CellPosition {
+public class CellPosition implements Comparable{
 
 	int CellX=0;
 	int CellY=0;
@@ -10,7 +10,7 @@ public class CellPosition {
 	}
 	public String toString()
 	{
-		return "x: "+CellX+" y: "+CellY;
+		return CellX+","+CellY;
 	}
 	/*@Override
 	public int compareTo(Object arg0) {
@@ -18,5 +18,13 @@ public class CellPosition {
 		// TODO Auto-generated method stub
 		return 0;
 	}*/
+	@Override
+	public int compareTo(Object o) {
+		CellPosition c= (CellPosition) o;
+		if (c.CellX == this.CellX) {
+            return this.CellY - c.CellY;
+        }
+        return  this.CellX - c.CellX;
+	}
 
 }

@@ -1,102 +1,115 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Set;
 
 public class EndGameState extends State{
 
 	public CellPosition IronManLocation;
 	public CellPosition ThanosLocation;
-	public ArrayList<CellPosition> WarriorsLocations=new ArrayList<CellPosition>();
-	public ArrayList<CellPosition> StonesLocations=new ArrayList<CellPosition>();
+	public CellPosition GridLimits;
+	public Hashtable<String,CellPosition> WarriorsLocations=new Hashtable<String,CellPosition>();
+	public Hashtable<String,CellPosition> StonesLocations=new Hashtable<String,CellPosition>();
 
+	//To initialize Initial State
 	public EndGameState(String StateRepresentation) {
-		super(StateRepresentation);
-		setIronManLocation();
-		setThanosLocation();
-		setWarriorsLocations();
-		setStonesLocations();
+		String[] parts = StateRepresentation.split(";");
+
+		setgridXandY(parts);
+		setIronManLocation(parts);
+		setThanosLocation(parts);
+		setWarriorsLocations(parts);
+		setStonesLocations(parts);
+		CreateKey();
 	}
 
-
-	public void setIronManLocation() {
-		int IronManX=Integer.parseInt(StateRepresentation.charAt(4)+"");
-		int IronManY=Integer.parseInt(StateRepresentation.charAt(6)+"");
-		IronManLocation= new CellPosition(IronManX,IronManY);
-	}
-
-
-
-	public void setThanosLocation() {
-		int ThanosX=Integer.parseInt(StateRepresentation.charAt(8)+"");
-		int ThanosY=Integer.parseInt(StateRepresentation.charAt(10)+"");
-		ThanosLocation= new CellPosition(ThanosX,ThanosY);
-	}
-
-
-
-	public void setWarriorsLocations() {
-		int initialWarriorX= 36;
-		int initialWarriorY=38;
-		for(int i=0;i<5;i++)
-		{
-			if(StateRepresentation.charAt(initialWarriorX)!='k' && StateRepresentation.charAt(initialWarriorY)!='k') //k for killed don't add to list
-			{
-			int WarriorX=Integer.parseInt(StateRepresentation.charAt(initialWarriorX)+"");
-			int WarriorY=Integer.parseInt(StateRepresentation.charAt(initialWarriorY)+"");
-			CellPosition WarriorPos=new CellPosition(WarriorX,WarriorY);
-			WarriorsLocations.add(WarriorPos);
-
-			}
-			initialWarriorX+=4;
-			initialWarriorY+=4;
+	//For other States
+	public EndGameState()
+	{
 		
-			
-		}
 	}
-
-
-
-	public void setStonesLocations() {
-		int initialStoneX= 12;
-		int initialStoneY=14;
-		for(int i=0;i<6;i++)
-		{
-			if(StateRepresentation.charAt(initialStoneX)!='c') //c for collected don't add to list
-			{
-			int StoneX=Integer.parseInt(StateRepresentation.charAt(initialStoneX)+"");
-			int StoneY=Integer.parseInt(StateRepresentation.charAt(initialStoneY)+"");
-			CellPosition StonePos=new CellPosition(StoneX,StoneY);
-			StonesLocations.add(StonePos);
-
-			}
-			initialStoneX+=4;
-			initialStoneY+=4;
+	
+	public void setgridXandY(String [] parts)
+	{
+		GridLimits=new CellPosition(Integer.parseInt(parts[0].split(",")[0])
+				,Integer.parseInt(parts[0].split(",")[1]));
 		
-			
-		}
+
 	}
+	public void setIronManLocation(String [] parts) {
+
+		IronManLocation=new CellPosition(Integer.parseInt(parts[1].split(",")[0])
+				,Integer.parseInt(parts[1].split(",")[1]));
+	}
+
+
+
+	public void setThanosLocation(String [] parts) {
+		ThanosLocation=new CellPosition(Integer.parseInt(parts[2].split(",")[0])
+				,Integer.parseInt(parts[2].split(",")[1]));
+	}
+
+
+    public void setStonesLocations(String [] parts) {
+    	String[] StonesStrings = parts[3].split(",");
+    	for(int i=0;i+1<StonesStrings.length;i+=2)
+    	{
+    		CellPosition newStonePos=new CellPosition(Integer.parseInt(StonesStrings[i]),
+    				Integer.parseInt(StonesStrings[i+1]));
+    		
+    		StonesLocations.put(newStonePos.toString(), newStonePos);
+    	}
+		
+	}
+
+	public void setWarriorsLocations(String [] parts) {
+		
+		String[] WarriorsStrings = parts[4].split(",");
+    	for(int i=0;i+1<WarriorsStrings.length;i+=2)
+    	{
+    		CellPosition newWarriorPos=new CellPosition(Integer.parseInt(WarriorsStrings[i]),
+    				Integer.parseInt(WarriorsStrings[i+1]));
+    		
+    		WarriorsLocations.put(newWarriorPos.toString(), newWarriorPos);
+    	}
+		
+	
+	}
+
+
+
+	
 	
 	public static void main(String[]args)
 	{
-		EndGameState s1= new EndGameState("5,5;1,2;3,1;c,2,1,1,2,1,2,2,4,0,4,1;0,3,3,0,3,2,3,4,4,3");
+		EndGameState s1= new EndGameState("5,5;1,2;3,1;4,1;0,3,3,2,3,4,4,3");
 		
-		EndGameState s2= new EndGameState("5,5;1,2;3,1;c,2,1,1,2,1,2,2,4,0,4,1;0,3,3,0,3,2,3,4,4,3");
+		EndGameState s2= new EndGameState("5,5;1,2;3,1;4,1;0,3,3,2,3,4,4,3");
 
-		/*HashMap<String,Integer> States=new HashMap<String,Integer> ();
-		if(!States.containsKey(s1.StateRepresentation)) {
-			States.put(s1.StateRepresentation,-1 );
+		System.out.println(s1.UniqueKey.equals(s2.UniqueKey));
+		HashMap<State,Integer> States=new HashMap<State,Integer> ();
+		if(!States.containsKey(s1)) {
+			States.put(s1,-1 );
 
 		}
-		if(!States.containsKey(s2.StateRepresentation)) {
-			States.put(s2.StateRepresentation,-1 );
+		if(!States.containsKey(s2)) {
+			States.put(s2,-1 );
 
 		}
 		System.out.println(States.size());
-		*/
+		
+
+		//System.out.println(java.util.Arrays.toString("0,3,3,2,3,4,4,3".split("(?<=\\G.)")));
 
 		
-		System.out.println(s2);
+		//System.out.println(s1.WarriorsLocations);
 		
 	}
+	public void RemoveElement(Hashtable<String,CellPosition> List,String Key) {
+		List.remove(Key);
+        StonesLocations=List;
+    }
 
 
 	@Override
@@ -104,7 +117,19 @@ public class EndGameState extends State{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	@Override
+	public int compareTo(Object arg0) {
+		return 0;
 	
+	}
+
+	@Override
+	public void CreateKey() {
+		this.UniqueKey=IronManLocation.toString()+ThanosLocation.toString()+StonesLocations+WarriorsLocations+GridLimits;
+		
+	}
 	
 
 }

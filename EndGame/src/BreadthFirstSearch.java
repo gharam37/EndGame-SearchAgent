@@ -18,10 +18,10 @@ public class BreadthFirstSearch extends StrategyQueue {
 	@Override
 	public Node RemoveFront() {
 		Node node=Nodes.poll();
-		if(States.containsKey(node.CurrentState.StateRepresentation)) {
+		if(States.containsKey(node.CurrentState.UniqueKey)) {
 			return null;
 		}
-		States.put(node.CurrentState.StateRepresentation,-1 );
+		States.put(node.CurrentState.UniqueKey,node.CurrentState );
 		return node;
 		
 	}

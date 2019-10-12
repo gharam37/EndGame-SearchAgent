@@ -1,15 +1,15 @@
 
-public abstract class State  {
+public abstract class State implements Comparable  {
 
-	
-	public String StateRepresentation;
+	String UniqueKey;
+	//public String StateRepresentation;
 	//Don't allow repeated states
 	
-	public State(String StateRepresentation)
+	/*public State(String StateRepresentation)
 	{
 		this.StateRepresentation=StateRepresentation;
-	}
-	public Boolean equals(State s) {
+	}*/
+	/*public Boolean equals(State s) {
 		
 		return(this.StateRepresentation.equals(s.StateRepresentation));
 	}
@@ -21,8 +21,9 @@ public abstract class State  {
     	return StateRepresentation;
 		
 		
-	}
-    
+	}*/
+	public abstract void CreateKey();
+
     public abstract void Visualize();
 	
 

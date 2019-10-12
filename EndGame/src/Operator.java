@@ -7,14 +7,14 @@ public abstract class Operator {
 	public Operator(double Cost ,String type)
 	{
 		this.Cost=Cost;
-		this.Type=Type;
+		this.Type=type;
 		
 	}
 	
 	public String toString()
 	{
 		
-		return Type+" "+Cost;
+		return Type;
 	}
 	
 	public abstract Node ApplyOnNode(Node node);

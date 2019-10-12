@@ -17,6 +17,7 @@ public class Node implements Comparable{
 		Operator=null;
 		CurrentState=null;
 		
+		
 	}
 	public Node(State CurrentState)
 	{

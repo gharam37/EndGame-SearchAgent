@@ -12,6 +12,7 @@ public abstract class GenericProblem {
 	
 
 	public static void main(String[]args) {
+		
 	}
 	public abstract Boolean goalTest(Node N);
 	public abstract Node NextState(Node N,Operator o);
@@ -28,7 +29,7 @@ public abstract class GenericProblem {
 		}
 		else if(Strategy.contentEquals("DF"))
 		{
-			//Todo Initialize a Depth First class not yet Implemented
+			queue = new DepthFirstSearch(InitialState(InitialRepresentation));
 		}
 		int totalNodes=0;
 		while(!queue.isEmpty())
@@ -37,9 +38,11 @@ public abstract class GenericProblem {
 			Node currentNode=queue.RemoveFront();
 			if(currentNode==null) continue;
 			totalNodes++;
+			//System.out.println("GOT HERE");
 			if(goalTest(currentNode))
 			{
-				System.out.println("Found solution ");
+				//currentNode.Operator.Type.equals("SNAP");
+				System.out.println("Found solution");
 				DisplaySolution(currentNode,totalNodes);
 				return;
 			}
@@ -48,6 +51,7 @@ public abstract class GenericProblem {
 				currentNode.CurrentState.Visualize();
 			}
 			ArrayList<Node> ExpandedNodes=ExpandNodes(currentNode);
+			//System.out.println("Expanding");
 			queue.EnqueueNodes(ExpandedNodes);
 		}
         System.out.println("No Solution was Found");
@@ -55,6 +59,14 @@ public abstract class GenericProblem {
 	
 	void DisplaySolution(Node n,int totalNodes)
 	{
+		Node current=n;
+		while(current.Parent!=null)
+		{
+			System.out.print(" "+current.Cost+" "+current.Operator.Type);
+			//System.out.println(current.CurrentState.UniqueKey);
+			current=current.Parent;
+		}
+		//System.out.println(totalNodes);
 		//TODO loop over n get parents until null, add costs , print totalNodes
 	}
 	

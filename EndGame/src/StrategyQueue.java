@@ -1,12 +1,12 @@
 import java.util.*;
 public abstract class StrategyQueue {
 	State InitialState;
-	HashMap<String,Integer> States=new HashMap<String,Integer> ();
+	HashMap<String,State> States=new HashMap<String,State>  ();
 	
 	public StrategyQueue(State InitialState)
 	{
 		this.InitialState=InitialState;
-		 this.States = new HashMap<String,Integer> ();
+		 this.States = new HashMap<String,State> ();
 	     Node FirstNode = new Node(this.InitialState);
 	     MakeQueue();
 	     AddNode(FirstNode);

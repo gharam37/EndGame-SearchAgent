@@ -4,14 +4,7 @@ public class EndGame extends GenericProblem{
 
 	public EndGame(ArrayList<Operator> Operators) {
 		super(Operators);
-		Operators.add(new EndGameOperator(0,"UP")); // Can Increase if next to warrior , Thanos
-		Operators.add(new EndGameOperator(0,"DOWN"));
-		Operators.add(new EndGameOperator(0,"RIGHT"));
-		Operators.add(new EndGameOperator(0,"LEFT"));
-		Operators.add(new EndGameOperator(3,"COLLECT")); 
-		Operators.add(new EndGameOperator(2,"KILL")); 
-		Operators.add(new EndGameOperator(5,"SNAP")); 
-		
+	
 
 
 	}
@@ -19,8 +12,11 @@ public class EndGame extends GenericProblem{
 	// A goal state when the previous action is Snap , stone positions empty , conditioned are checked in EndGameOperator
 	@Override
 	public Boolean goalTest(Node N) {
-		// TODO Auto-generated method stub
-		return null;
+		//System.out.println(N.Operator);
+		if(N.Parent!=null) {
+		return N.Operator.Type.equals("SNAP");
+		}
+		return false;
 	}
 
 
