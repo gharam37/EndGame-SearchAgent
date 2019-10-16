@@ -24,11 +24,11 @@ public class Main {
 	
 	public static void main(String[] args)
 	{
-		String InitializeRepresentation="15,15;1,13;3,7;0,2,1,7,2,1,5,2,4,0,4,6;0,3,14,0,3,2,3,4,8,3";
-		//String InitializeRepresentation="3,3;1,1;2,2;0,2;0,1";
+		//String InitializeRepresentation="15,15;1,13;3,7;0,2,1,7,2,1,5,2,4,0,4,6;0,3,14,0,3,2,3,4,8,3";
+		String InitializeRepresentation="3,3;1,1;2,2;0,2;0,1";
 
 		
-		solve(InitializeRepresentation,"DF",false);
+		solve(InitializeRepresentation,"ID",true);
 		
 	}
 }

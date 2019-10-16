@@ -2,6 +2,7 @@
 public abstract class State implements Comparable  {
 
 	String UniqueKey;
+	int depth=0;
 	//public String StateRepresentation;
 	//Don't allow repeated states
 	

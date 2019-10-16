@@ -114,8 +114,38 @@ public class EndGameState extends State{
 
 	@Override
 	public void Visualize() {
-		// TODO Auto-generated method stub
-		
+
+		for(int x=0;x<GridLimits.CellX;x++) {
+			for(int y=0;y<GridLimits.CellY;y++) {
+				if(IronManLocation.CellX==x && IronManLocation.CellY==y) {
+					System.out.print(" I |");
+				}
+				else {
+					if(ThanosLocation.CellX==x && ThanosLocation.CellY==y) {
+						System.out.print(" T |");
+						
+					}
+					else {
+						if(WarriorsLocations.containsKey(x+","+y)) {
+							System.out.print(" W |");
+						}
+						else {
+							if(StonesLocations.containsKey(x+","+y)) {
+								System.out.print(" S |");
+							}
+							else {
+								System.out.print(" 0 |");
+							}
+						}
+					}
+				}
+				
+				
+			}
+			System.out.println("");
+		}
+		System.out.println("");
+		System.out.println("");
 	}
 
 
