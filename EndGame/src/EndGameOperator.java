@@ -254,10 +254,14 @@ public class EndGameOperator extends Operator{
 			EndGameState newState=new EndGameState();
 			newState.IronManLocation= new CellPosition(State.IronManLocation.CellX,State.IronManLocation.CellY);
 			newState.GridLimits= new CellPosition(State.GridLimits.CellX,State.GridLimits.CellY);
-			newState.RemoveElement(State.StonesLocations,IronManPos.toString());
+			newState.StonesLocations= (Hashtable<String, CellPosition>) State.StonesLocations.clone();
+			newState.RemoveElement(newState.StonesLocations,IronManPos.toString());
 			newState.WarriorsLocations=(Hashtable<String, CellPosition>) State.WarriorsLocations.clone();
 			newState.ThanosLocation=new CellPosition(State.ThanosLocation.CellX,State.ThanosLocation.CellY);
+			//System.out.println(State.UniqueKey);
 			newState.CreateKey();
+			//System.out.println(newState.UniqueKey);
+
 			double Damage=checkAdjecents(newState);
 
 			child=new Node(n,newState,new EndGameOperator(Damage+3,this.Type));
@@ -269,32 +273,82 @@ public class EndGameOperator extends Operator{
 		
 		return child;
 	}
+	
 	public Node ApplyKill(Node n)
 	{
 		Node child=null;
 		EndGameState State=(EndGameState) n.CurrentState;
 		CellPosition IronManPos=State.IronManLocation;
+		String Up = (IronManPos.CellX+1)+","+IronManPos.CellY;
+		String Down = (IronManPos.CellX-1)+","+IronManPos.CellY;
+		String Right = IronManPos.CellX+","+(IronManPos.CellY+1);
+		String Left = IronManPos.CellX+","+(IronManPos.CellY-1);
 
-		if(State.WarriorsLocations.containsKey(IronManPos.toString()))
+
+
+		EndGameState newState=new EndGameState();
+		newState.IronManLocation= new CellPosition(State.IronManLocation.CellX,State.IronManLocation.CellY);
+		newState.GridLimits= new CellPosition(State.GridLimits.CellX,State.GridLimits.CellY);
+		newState.StonesLocations=(Hashtable<String, CellPosition>) State.StonesLocations.clone();
+		newState.WarriorsLocations=(Hashtable<String, CellPosition>) State.WarriorsLocations.clone();
+
+
+		newState.ThanosLocation=new CellPosition(State.ThanosLocation.CellX,State.ThanosLocation.CellY);
+		double Damage=0;
+		if(newState.WarriorsLocations.containsKey(Up))
+		{
+             //System.out.println("Up");
+			newState.RemoveElement(newState.WarriorsLocations,Up);
+			newState.CreateKey();
+
+			Damage+=1;
+
+			//String Representation=State.GridLimits+";"+State.IronManLocation+";"
+		}
+		if(newState.WarriorsLocations.containsKey(Left))
 		{
 
-			EndGameState newState=new EndGameState();
-			newState.IronManLocation= new CellPosition(State.IronManLocation.CellX,State.IronManLocation.CellY);
-			newState.GridLimits= new CellPosition(State.GridLimits.CellX,State.GridLimits.CellY);
-			newState.RemoveElement(State.WarriorsLocations,State.WarriorsLocations.toString());
-			newState.StonesLocations=(Hashtable<String, CellPosition>) State.StonesLocations.clone();
-
-			newState.ThanosLocation=new CellPosition(State.ThanosLocation.CellX,State.ThanosLocation.CellY);
+            //System.out.println("Left");
+			newState.RemoveElement(newState.WarriorsLocations,Left);
 			newState.CreateKey();
-			double Damage=checkAdjecents(newState);
+			Damage+=1;
 
-			child=new Node(n,newState,new EndGameOperator(Damage+2,this.Type));
-			child=new Node(n,newState,new EndGameOperator(this.Cost,this.Type));
+			//String Representation=State.GridLimits+";"+State.IronManLocation+";"
+		}
+		if(newState.WarriorsLocations.containsKey(Down))
+		{
+			
+            //System.out.println("Down");
+
+			newState.RemoveElement(newState.WarriorsLocations,Down);
+			newState.CreateKey();
+			Damage+=1;
+
+
+	        //String Representation=State.GridLimits+";"+State.IronManLocation+";"
+		}
+		if(newState.WarriorsLocations.containsKey(Right))
+		{
+            //System.out.println("Right");
+
+			newState.RemoveElement(newState.WarriorsLocations,Right);
+			newState.CreateKey();
+			Damage+=1;
+
 
 
 			//String Representation=State.GridLimits+";"+State.IronManLocation+";"
 		}
 		
+		Damage=Damage*2;
+		if(Damage>0) {
+			///System.out.println("Here");
+			//System.out.println(State.WarriorsLocations+"Old");
+			//System.out.println(newState.WarriorsLocations);
+            //newState.Visualize();
+           // State.Visualize();
+		child=new Node(n,newState,new EndGameOperator(Damage,this.Type));
+		}
 		return child;
 	}
 	public Node ApplySnap(Node n)
@@ -308,10 +362,17 @@ public class EndGameOperator extends Operator{
 			if(n.Cost<100) {
 			EndGameState newState=new EndGameState();
 			if(State.StonesLocations.isEmpty()) {
-
-			
+           // System.out.println("Stones are empty");
 			child=new Node(n,newState,new EndGameOperator(this.Cost,this.Type));
-			}
+			
+			Node current=n;
+			/*while(current!=null) {
+				if(current.Parent!=null) {
+				System.out.println(current.Operator.Type);
+				}
+				current=current.Parent;
+			}*/
+	}
 	}
 
 

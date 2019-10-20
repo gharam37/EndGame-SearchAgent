@@ -19,8 +19,8 @@ public class IterativeDeepSearch extends StrategyQueue {
 	    public boolean isEmpty() {
 	        boolean isDone = Nodes.isEmpty();
 	        if (isDone) {
-	            System.out.printf("Tried depth %d but failed to find solution, trying depth %d ...\n",
-	                    Nodes.depth, Nodes.depth + 1);
+	            /*System.out.printf("Tried depth %d but failed to find solution, trying depth %d ...\n",
+	                    Nodes.depth, Nodes.depth + 1);*/
 	            Nodes.depth++;
 	            Nodes.reset();
 	        }

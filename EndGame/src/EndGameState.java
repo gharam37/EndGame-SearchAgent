@@ -108,7 +108,7 @@ public class EndGameState extends State{
 	}
 	public void RemoveElement(Hashtable<String,CellPosition> List,String Key) {
 		List.remove(Key);
-        StonesLocations=List;
+       // StonesLocations=(Hashtable<String, CellPosition>) List.clone();
     }
 
 

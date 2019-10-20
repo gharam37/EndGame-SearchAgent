@@ -47,7 +47,7 @@ public abstract class GenericProblem {
 			
 			Node currentNode=queue.RemoveFront();
 			if(currentNode==null) continue;
-			totalNodes++;
+			//totalNodes++;
 			//System.out.println("GOT HERE");
 			if(goalTest(currentNode))
 			{
@@ -58,6 +58,7 @@ public abstract class GenericProblem {
 				long timeElapsed = endTime - startTime;
 				System.out.println("Execution time in milliseconds : " + 
 						timeElapsed / 1000000);
+				System.out.println(totalNodes);
 				return;
 			}
 			if(Visualize)
@@ -65,6 +66,7 @@ public abstract class GenericProblem {
 				currentNode.CurrentState.Visualize();
 			}
 			ArrayList<Node> ExpandedNodes=ExpandNodes(currentNode);
+			totalNodes+=ExpandedNodes.size();
 			//System.out.println("Expanding");
 			queue.EnqueueNodes(ExpandedNodes);
 		}

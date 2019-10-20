@@ -32,6 +32,7 @@ public class EndGame extends GenericProblem{
 				
 			}
 		 }
+		// System.out.println(ExpandedNodes.size());
 		 return ExpandedNodes;
 		 
 	}
