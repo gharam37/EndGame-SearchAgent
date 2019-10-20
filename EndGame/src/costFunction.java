@@ -1,5 +1,5 @@
 
-public class costFunction {
+/*public class costFunction {
 	 public int apply(Node node) {
 		 	EndGameState state =  (EndGameState) node.CurrentState;
 	        int warriorNum = state.WarriorsLocations.size();
@@ -7,4 +7,4 @@ public class costFunction {
 	        int costToKill = 3 * (GridLimits.CellX + GridLimits.CellY);
 	        return (int) (Math.ceil(warriorNum / 3.0) * costToKill);
 	    }
-}
+}*/

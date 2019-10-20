@@ -36,6 +36,8 @@ public abstract class GenericProblem {
 			queue = new IterativeDeepSearch(InitialState(InitialRepresentation));
 		}
 		int totalNodes=0;
+		long startTime = System.nanoTime();
+
 		while(!queue.isEmpty())
 		{
 			
@@ -48,6 +50,10 @@ public abstract class GenericProblem {
 				//currentNode.Operator.Type.equals("SNAP");
 				System.out.println("Found solution");
 				DisplaySolution(currentNode,totalNodes);
+				long endTime = System.nanoTime();
+				long timeElapsed = endTime - startTime;
+				System.out.println("Execution time in milliseconds : " + 
+						timeElapsed / 1000000);
 				return;
 			}
 			if(Visualize)
@@ -58,6 +64,10 @@ public abstract class GenericProblem {
 			//System.out.println("Expanding");
 			queue.EnqueueNodes(ExpandedNodes);
 		}
+		long endTime = System.nanoTime();
+		long timeElapsed = endTime - startTime;
+		System.out.println("Execution time in milliseconds : " + 
+				timeElapsed / 1000000);
         System.out.println("No Solution was Found");
 	}
 	

@@ -1,7 +1,7 @@
 
 import java.util.Stack;
 public class LimitedSearch  extends StrategyQueue {
-	 private Stack<Node> queue;
+	 private Stack<Node> Nodes;
 	    int depth;
 
 	    LimitedSearch(State initialState, int depth) {
@@ -16,7 +16,7 @@ public class LimitedSearch  extends StrategyQueue {
 	        if (isEmpty()) {
 	            return null;
 	        }
-	        Node n = queue.pop();
+	        Node n = Nodes.pop();
 
 	        boolean exploredBefore = States.containsKey(n.CurrentState.UniqueKey)
 	                && States.get(n.CurrentState.UniqueKey).depth <= n.Depth;
@@ -29,13 +29,13 @@ public class LimitedSearch  extends StrategyQueue {
 
 	    @Override
 	    public boolean isEmpty() {
-	        return queue.isEmpty();
+	        return Nodes.isEmpty();
 	    }
 
 		@Override
 		void MakeQueue() {
 			// TODO Auto-generated method stub
-			queue = new Stack<>();
+			Nodes = new Stack<>();
 			
 		}
 
@@ -43,6 +43,6 @@ public class LimitedSearch  extends StrategyQueue {
 		@Override
 		public void AddNode(Node n) {
 			// TODO Auto-generated method stub
-			queue.push(n);
+			Nodes.push(n);
 		}
 }

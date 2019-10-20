@@ -2,7 +2,7 @@ import java.util.Stack;
 
 public class IterativeDeepSearch extends StrategyQueue {
 	 
-	private LimitedSearch queue;
+	private LimitedSearch Nodes;
 
 	    public IterativeDeepSearch(State initialState) {
 	        super(initialState);
@@ -11,18 +11,18 @@ public class IterativeDeepSearch extends StrategyQueue {
 
 	    @Override
 	    public Node RemoveFront() {
-	        return queue.RemoveFront();
+	        return Nodes.RemoveFront();
 	    }
 
 
 	    @Override
 	    public boolean isEmpty() {
-	        boolean isDone = queue.isEmpty();
+	        boolean isDone = Nodes.isEmpty();
 	        if (isDone) {
 	            System.out.printf("Tried depth %d but failed to find solution, trying depth %d ...\n",
-	                    queue.depth, queue.depth + 1);
-	            queue.depth++;
-	            queue.reset();
+	                    Nodes.depth, Nodes.depth + 1);
+	            Nodes.depth++;
+	            Nodes.reset();
 	        }
 	        return false;
 	    }
@@ -30,7 +30,7 @@ public class IterativeDeepSearch extends StrategyQueue {
 		@Override
 		void MakeQueue() {
 			// TODO Auto-generated method stub
-			queue = new LimitedSearch(this.InitialState, 0);
+			Nodes = new LimitedSearch(this.InitialState, 0);
 			
 		}
 
@@ -39,6 +39,6 @@ public class IterativeDeepSearch extends StrategyQueue {
 		@Override
 		public void AddNode(Node n) {
 			// TODO Auto-generated method stub
-			queue.AddNode(n);
+			Nodes.AddNode(n);
 		}
 }
