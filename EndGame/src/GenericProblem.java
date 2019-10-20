@@ -35,6 +35,10 @@ public abstract class GenericProblem {
 		{
 			queue = new IterativeDeepSearch(InitialState(InitialRepresentation));
 		}
+		else if(Strategy.contentEquals("UC"))
+		{
+			queue = new UniformCostSearch(InitialState(InitialRepresentation));
+		}
 		int totalNodes=0;
 		long startTime = System.nanoTime();
 
@@ -44,7 +48,7 @@ public abstract class GenericProblem {
 			Node currentNode=queue.RemoveFront();
 			if(currentNode==null) continue;
 			totalNodes++;
-			System.out.println("GOT HERE");
+			//System.out.println("GOT HERE");
 			if(goalTest(currentNode))
 			{
 				//currentNode.Operator.Type.equals("SNAP");

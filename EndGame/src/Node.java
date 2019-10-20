@@ -36,6 +36,7 @@ public class Node implements Comparable{
 		{
 			Depth=Parent.Depth+1;
 			Cost=Parent.Cost+Operator.Cost;
+			this.CurrentState.Cost=this.Cost;
 		}
 		
 	}

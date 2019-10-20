@@ -11,25 +11,49 @@ public class UniformCostSearch extends StrategyQueue{
 	@Override
 	void MakeQueue() {
 		// TODO Auto-generated method stub
-		
+        Nodes = new PriorityQueue<Node>(new BasicNodeComparator());
+
 	}
 
 	@Override
 	public Node RemoveFront() {
-		// TODO Auto-generated method stub
-		return null;
+		Node node=Nodes.poll();
+		
+		if(node==null) {
+			return node;
+		}
+		double FrontNodeCost=node.Cost;
+		
+		if(States.containsKey(node.CurrentState.UniqueKey)) {
+			
+			State s= States.get(node.CurrentState.UniqueKey);
+			//System.out.println(s.UniqueKey);
+
+		
+			double CurrentCost=s.Cost;
+            if (FrontNodeCost >= CurrentCost) {
+    			/*System.out.println(s.UniqueKey);
+    			System.out.println(CurrentCost);
+    			System.out.println(FrontNodeCost);*/
+            	return null;
+            }
+
+			
+		}
+		States.put(node.CurrentState.UniqueKey,node.CurrentState );
+		return node;
+		
 	}
 
 	@Override
 	public void AddNode(Node n) {
-		// TODO Auto-generated method stub
+		Nodes.add(n);
 		
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return Nodes.isEmpty();
 	}
 
 }

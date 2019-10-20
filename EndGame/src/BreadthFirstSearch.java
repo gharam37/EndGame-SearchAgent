@@ -29,7 +29,7 @@ public class BreadthFirstSearch extends StrategyQueue {
 	@Override
 	public void AddNode(Node node) {
 		Nodes.add(node);
-		
+		//System.out.println(node.Cost);
 	}
 
 	@Override

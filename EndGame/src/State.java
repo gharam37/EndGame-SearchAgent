@@ -3,6 +3,7 @@ public abstract class State implements Comparable  {
 
 	String UniqueKey;
 	int depth=0;
+	double Cost;
 	//public String StateRepresentation;
 	//Don't allow repeated states
 	
