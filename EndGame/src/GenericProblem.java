@@ -33,7 +33,7 @@ public abstract class GenericProblem {
 		}
 		else if(Strategy.contentEquals("ID"))
 		{
-			queue = new IterativeDeepSearch(InitialState(InitialRepresentation),0);
+			queue = new IterativeDeepSearch(InitialState(InitialRepresentation));
 		}
 		int totalNodes=0;
 		while(!queue.isEmpty())
