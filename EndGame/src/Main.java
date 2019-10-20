@@ -29,7 +29,8 @@ public class Main {
 		//String InitializeRepresentation="3,3;2,0;2,2;0,2;0,1,0,0,1,0";
 
 		
-		solve(InitializeRepresentation,"ID",false);
+		//solve(InitializeRepresentation,"ID",false);
+		solve(InitializeRepresentation,"GR2",false);
 		
 	}
 }
