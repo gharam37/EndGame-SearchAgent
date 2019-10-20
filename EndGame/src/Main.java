@@ -29,7 +29,7 @@ public class Main {
 		//String InitializeRepresentation="4,4;4,0;2,2;0,2;0,1";
 
 		
-		solve(InitializeRepresentation,"UC",false);
+		solve(InitializeRepresentation,"GR1",true);
 		
 	}
 }
