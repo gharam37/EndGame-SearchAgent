@@ -31,7 +31,7 @@ public abstract class StrategyQueue {
 
 	public abstract boolean isEmpty();
 	
-	 void reset() {
+	 void ReMakeQueue() {
 		 this.States = new HashMap<String,State> ();
 	     Node FirstNode = new Node(this.InitialState);
 	     MakeQueue();

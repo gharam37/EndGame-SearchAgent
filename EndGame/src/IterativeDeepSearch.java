@@ -2,7 +2,9 @@ import java.util.Stack;
 
 public class IterativeDeepSearch extends StrategyQueue {
 	 
-	private LimitedSearch Nodes;
+	//private LimitedSearch Nodes;
+	 private Stack<Node> Nodes;
+	    int depth=0;
 
 	    public IterativeDeepSearch(State initialState) {
 	        super(initialState);
@@ -11,26 +13,58 @@ public class IterativeDeepSearch extends StrategyQueue {
 
 	    @Override
 	    public Node RemoveFront() {
-	        return Nodes.RemoveFront();
+	    	
+	    	 if (isEmpty() ) {
+		            return null;
+		        }
+	    	 if(Nodes!=null) {
+		        Node node = Nodes.pop();
+
+	    	 
+		        boolean BeenHere = States.containsKey(node.CurrentState.UniqueKey)
+		                && States.get(node.CurrentState.UniqueKey).depth <= node.Depth;
+		        if( States.get(node.CurrentState.UniqueKey)!=null) {
+		        	//System.out.println(States.get(node.CurrentState.UniqueKey).depth);
+		        	//System.out.println(this.depth);
+
+		        	
+		        	
+		        }
+		        boolean CrossedDepth = node.Depth > this.depth;
+		        boolean result= CrossedDepth||BeenHere;
+		        
+		        if (result) {
+		        	return null;
+
+		        }
+
+		        States.put(node.CurrentState.UniqueKey, node.CurrentState);
+		        return node;
+		    }
+	    	 return null;
+
 	    }
+	    
 
 
 	    @Override
 	    public boolean isEmpty() {
-	        boolean isDone = Nodes.isEmpty();
-	        if (isDone) {
-	            /*System.out.printf("Tried depth %d but failed to find solution, trying depth %d ...\n",
-	                    Nodes.depth, Nodes.depth + 1);*/
-	            Nodes.depth++;
-	            Nodes.reset();
+	        if (Nodes.isEmpty()) {
+	            System.out.println("failed at depth "+this.depth+" going to depth "+(this.depth+1));
+	            depth++;
+	            ReMakeQueue();
 	        }
 	        return false;
+	    }
+	    
+	    public boolean FinishedDepth() {
+	    	return false;
 	    }
 
 		@Override
 		void MakeQueue() {
 			// TODO Auto-generated method stub
-			Nodes = new LimitedSearch(this.InitialState, 0);
+		   Nodes = new Stack<>();
 			
 		}
 
@@ -39,6 +73,6 @@ public class IterativeDeepSearch extends StrategyQueue {
 		@Override
 		public void AddNode(Node n) {
 			// TODO Auto-generated method stub
-			Nodes.AddNode(n);
+			Nodes.push(n);
 		}
 }

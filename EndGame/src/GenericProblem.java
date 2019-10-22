@@ -54,7 +54,10 @@ public abstract class GenericProblem {
 		{
 			
 			Node currentNode=queue.RemoveFront();
-			if(currentNode==null) continue;
+			if(currentNode==null) 
+			{continue;
+				
+			}
 			//totalNodes++;
 			//System.out.println("GOT HERE");
 			if(goalTest(currentNode))
