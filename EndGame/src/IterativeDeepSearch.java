@@ -14,11 +14,12 @@ public class IterativeDeepSearch extends StrategyQueue {
 	    @Override
 	    public Node RemoveFront() {
 	    	
+	    	Node node=null;
 	    	 if (isEmpty() ) {
-		            return null;
+		            return node;
 		        }
 	    	 if(Nodes!=null) {
-		        Node node = Nodes.pop();
+		         node = Nodes.pop();
 
 	    	 
 		        boolean BeenHere = States.containsKey(node.CurrentState.UniqueKey)
