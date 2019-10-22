@@ -62,7 +62,7 @@ public abstract class GenericProblem {
 				long timeElapsed = endTime - startTime;
 				System.out.println("Execution time in milliseconds : " + 
 						timeElapsed / 1000000);
-				System.out.println(totalNodes);
+				//System.out.println(totalNodes);
 				return;
 			}
 			if(Visualize)
@@ -84,13 +84,16 @@ public abstract class GenericProblem {
 	void DisplaySolution(Node n,int totalNodes)
 	{
 		Node current=n;
+		String Solution="";
 		while(current.Parent!=null)
 		{
-			System.out.print(" "+current.Cost+" "+current.Operator.Type);
+			Solution=current.Operator.Type+" ("+current.Cost+") "+Solution;
+			//System.out.print(" "+current.Cost+" "+current.Operator.Type);
 			//System.out.println(current.CurrentState.UniqueKey);
 			current=current.Parent;
 		}
-		//System.out.println(totalNodes);
+		Solution+=";"+totalNodes;
+		System.out.println(Solution);
 		//TODO loop over n get parents until null, add costs , print totalNodes
 	}
 	

@@ -63,7 +63,7 @@ public class EndGameOperator extends Operator{
 		{
 			String newIronManPos=""+newIronManX+","+IronManPos.CellY;
 			//No warrior in Cell
-			if(!State.WarriorsLocations.containsKey(newIronManPos))
+			if(!State.WarriorsLocations.containsKey(newIronManPos) && !(State.ThanosLocation.toString().equals(newIronManPos)&& State.StonesLocations.size()!=0))
 			{
 				//Create the state
 				EndGameState newState=new EndGameState();
@@ -160,7 +160,7 @@ public class EndGameOperator extends Operator{
 		{
 			String newIronManPos=""+newIronManX+","+IronManPos.CellY;
 			//No warrior in Cell
-			if(!State.WarriorsLocations.containsKey(newIronManPos))
+			if(!State.WarriorsLocations.containsKey(newIronManPos) && !(State.ThanosLocation.toString().equals(newIronManPos)&& State.StonesLocations.size()!=0))
 			{
 				EndGameState newState=new EndGameState();
 				newState.IronManLocation=new CellPosition(newIronManX,IronManPos.CellY);
@@ -190,7 +190,7 @@ public class EndGameOperator extends Operator{
 		{
 			String newIronManPos=""+State.IronManLocation.CellX+","+newIronManY;
 			//No warrior in Cell
-			if(!State.WarriorsLocations.containsKey(newIronManPos))
+			if(!State.WarriorsLocations.containsKey(newIronManPos) && !(State.ThanosLocation.toString().equals(newIronManPos)&& State.StonesLocations.size()!=0))
 			{
 				EndGameState newState=new EndGameState();
 				newState.IronManLocation=new CellPosition(State.IronManLocation.CellX,newIronManY);
@@ -222,7 +222,7 @@ public class EndGameOperator extends Operator{
 		{
 			String newIronManPos=""+State.IronManLocation.CellX+","+newIronManY;
 			//No warrior in Cell
-			if(!State.WarriorsLocations.containsKey(newIronManPos))
+			if(!State.WarriorsLocations.containsKey(newIronManPos) && !(State.ThanosLocation.toString().equals(newIronManPos)&& State.StonesLocations.size()!=0))
 			{
 				EndGameState newState=new EndGameState();
 				newState.IronManLocation=new CellPosition(State.IronManLocation.CellX,newIronManY);
