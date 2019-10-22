@@ -43,6 +43,10 @@ public abstract class GenericProblem {
 		{
 			queue = new GreedySearch(InitialState(InitialRepresentation), new costFunction());
 		}
+		else if(Strategy.contentEquals("AS1"))
+		{
+			queue = new AStarSearch(InitialState(InitialRepresentation), new costFunction());
+		}
 		int totalNodes=0;
 		long startTime = System.nanoTime();
 
