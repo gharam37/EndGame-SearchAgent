@@ -94,10 +94,12 @@ public abstract class GenericProblem {
 		String Solution="";
 		while(current.Parent!=null)
 		{
+			
 			Solution=current.Operator.Type+" ("+current.Cost+") "+Solution;
 			//System.out.print(" "+current.Cost+" "+current.Operator.Type);
 			//System.out.println(current.CurrentState.UniqueKey);
 			current=current.Parent;
+			
 		}
 		Solution+=";"+totalNodes;
 		System.out.println(Solution);

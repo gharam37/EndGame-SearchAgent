@@ -98,12 +98,7 @@ public class EndGameOperator extends Operator{
 		String DownKey=(newIronManPos.CellX+1)+","+newIronManPos.CellY;
 		String RightKey=(newIronManPos.CellX)+","+(newIronManPos.CellY+1);
 		String LeftKey=(newIronManPos.CellX)+","+(newIronManPos.CellY-1);
-		/*if(UpKey.equals("0,1"))
-		{
-			System.out.println("Here");
-		}
 
-		System.out.println(s.WarriorsLocations.containsKey("0,1"));*/
 		
 
 		
@@ -130,9 +125,13 @@ public class EndGameOperator extends Operator{
 		if(s.ThanosLocation.toString().equals(UpKey)
 		  || s.ThanosLocation.toString().equals(DownKey)
 	      ||  s.ThanosLocation.toString().equals(RightKey)
-	      ||s.ThanosLocation.toString().equals(LeftKey))
+	      ||s.ThanosLocation.toString().equals(LeftKey)
+	      || (s.ThanosLocation.toString().equals(s.IronManLocation.toString())))
+				
+				
 		{
 			Damage+=5;
+			//System.out.println(Damage);
 		}
 		
 		/*if(newIronManPos.toString().equals("0,2")){
@@ -171,7 +170,15 @@ public class EndGameOperator extends Operator{
 				newState.WarriorsLocations=(Hashtable<String, CellPosition>) State.WarriorsLocations.clone();
 				newState.CreateKey();
 				double Damage=checkAdjecents(newState);
+				/*if(Damage>=5) {
+					System.out.println("Here");
+					System.out.println(newState.UniqueKey);
+				     if(newState.IronManLocation.equals(newState.ThanosLocation)){
+				    	// System.out.println(newState.UniqueKey);
+				     }
+				}*/
 				child=new Node(n,newState,new EndGameOperator(Damage,this.Type));
+				
 
 				
 			}
