@@ -3,6 +3,9 @@ import java.util.ArrayList;
 public abstract class GenericProblem {
 	
 	public ArrayList<Operator> Operators= new ArrayList<Operator>();
+	public MainHeuristic FirstHeuristic;
+	public MainHeuristic SecondHeuristic;
+
 	
 	public GenericProblem(ArrayList<Operator> Operators)
 	{
@@ -41,11 +44,19 @@ public abstract class GenericProblem {
 		}
 		else if(Strategy.contentEquals("GR1"))
 		{
-			queue = new GreedySearch(InitialState(InitialRepresentation), new costFunction());
+			queue = new GreedySearch(InitialState(InitialRepresentation), this.FirstHeuristic);
 		}
 		else if(Strategy.contentEquals("AS1"))
 		{
-			queue = new AStarSearch(InitialState(InitialRepresentation), new costFunction());
+			queue = new AStarSearch(InitialState(InitialRepresentation),this.FirstHeuristic);
+		}
+		else if(Strategy.contentEquals("GR2"))
+		{
+			queue = new GreedySearch(InitialState(InitialRepresentation), this.SecondHeuristic);
+		}
+		else if(Strategy.contentEquals("AS2"))
+		{
+			queue = new AStarSearch(InitialState(InitialRepresentation),this.SecondHeuristic);
 		}
 		int totalNodes=0;
 		long startTime = System.nanoTime();

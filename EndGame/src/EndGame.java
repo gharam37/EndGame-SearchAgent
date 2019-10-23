@@ -5,6 +5,10 @@ public class EndGame extends GenericProblem{
 	public EndGame(ArrayList<Operator> Operators) {
 		super(Operators);
 	
+		this.FirstHeuristic= new ReachingThanosHeuristic();
+		this.SecondHeuristic= new NearestStoneHeuristic();
+
+		
 
 
 	}
