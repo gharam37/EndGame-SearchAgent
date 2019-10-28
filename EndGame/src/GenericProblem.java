@@ -23,7 +23,7 @@ public abstract class GenericProblem {
 	//Take Grid and Represent it based on the type of search problem
 	public abstract State InitialState(String InitialRepresentation);
 	
-	public void Search(String InitialRepresentation,String Strategy,Boolean Visualize)
+	public String Search(String InitialRepresentation,String Strategy,Boolean Visualize)
 	{
 		StrategyQueue queue = null;
 		if(Strategy.contentEquals("BF"))
@@ -75,13 +75,13 @@ public abstract class GenericProblem {
 			{
 				//currentNode.Operator.Type.equals("SNAP");
 				System.out.println("Found solution");
-				DisplaySolution(currentNode,totalNodes);
+				String Solution=DisplaySolution(currentNode,totalNodes);
 				long endTime = System.nanoTime();
 				long timeElapsed = endTime - startTime;
 				System.out.println("Execution time in milliseconds : " + 
 						timeElapsed / 1000000);
 				//System.out.println(totalNodes);
-				return;
+				return Solution;
 			}
 			if(Visualize)
 			{
@@ -97,23 +97,30 @@ public abstract class GenericProblem {
 		System.out.println("Execution time in milliseconds : " + 
 				timeElapsed / 1000000);
         System.out.println("No Solution was Found");
+        return null;
 	}
 	
-	void DisplaySolution(Node n,int totalNodes)
+	String DisplaySolution(Node n,int totalNodes)
 	{
 		Node current=n;
 		String Solution="";
+		double TotalCost=n.Cost;
 		while(current.Parent!=null)
 		{
 			
-			Solution=current.Operator.Type+" ("+current.Cost+") "+Solution;
+			//Solution=current.Operator.Type.toLowerCase()+" ("+current.Cost+") "+Solution;
+			Solution=current.Operator.Type.toLowerCase()+","+Solution;
 			//System.out.print(" "+current.Cost+" "+current.Operator.Type);
 			//System.out.println(current.CurrentState.UniqueKey);
 			current=current.Parent;
 			
 		}
+		Solution=Solution.substring(0,(Solution.length())-1);
+		Solution+=";"+TotalCost;
+
 		Solution+=";"+totalNodes;
 		System.out.println(Solution);
+		return Solution;
 		//TODO loop over n get parents until null, add costs , print totalNodes
 	}
 	

@@ -51,7 +51,7 @@ public class IterativeDeepSearch extends StrategyQueue {
 	    @Override
 	    public boolean isEmpty() {
 	        if (Nodes.isEmpty()) {
-	            System.out.println("failed at depth "+this.depth+" going to depth "+(this.depth+1));
+	            //System.out.println("failed at depth "+this.depth+" going to depth "+(this.depth+1));
 	            depth++;
 	            ReMakeQueue();
 	        }
