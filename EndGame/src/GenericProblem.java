@@ -75,7 +75,7 @@ public abstract class GenericProblem {
 			{
 				//currentNode.Operator.Type.equals("SNAP");
 				System.out.println("Found solution");
-				String Solution=DisplaySolution(currentNode,totalNodes);
+				String Solution=DisplaySolution(currentNode,totalNodes,Visualize);
 				long endTime = System.nanoTime();
 				long timeElapsed = endTime - startTime;
 				System.out.println("Execution time in milliseconds : " + 
@@ -83,10 +83,7 @@ public abstract class GenericProblem {
 				//System.out.println(totalNodes);
 				return Solution;
 			}
-			if(Visualize)
-			{
-				currentNode.CurrentState.Visualize();
-			}
+			
 			ArrayList<Node> ExpandedNodes=ExpandNodes(currentNode);
 			totalNodes+=ExpandedNodes.size();
 			//System.out.println("Expanding");
@@ -100,19 +97,23 @@ public abstract class GenericProblem {
         return null;
 	}
 	
-	String DisplaySolution(Node n,int totalNodes)
+	String DisplaySolution(Node n,int totalNodes,boolean Visualize)
 	{
 		Node current=n;
 		String Solution="";
 		double TotalCost=n.Cost;
 		while(current.Parent!=null)
 		{
-			
+			if(Visualize)
+			{
+				current.CurrentState.Visualize();
+			}
 			//Solution=current.Operator.Type.toLowerCase()+" ("+current.Cost+") "+Solution;
 			Solution=current.Operator.Type.toLowerCase()+","+Solution;
 			//System.out.print(" "+current.Cost+" "+current.Operator.Type);
 			//System.out.println(current.CurrentState.UniqueKey);
 			current=current.Parent;
+			
 			
 		}
 		Solution=Solution.substring(0,(Solution.length())-1);
