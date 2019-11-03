@@ -368,6 +368,13 @@ public class EndGameOperator extends Operator{
 			
 			if(n.Cost<100) {
 			EndGameState newState=new EndGameState();
+			newState.IronManLocation=new CellPosition(State.IronManLocation.CellX,State.IronManLocation.CellY);
+			newState.GridLimits= new CellPosition(State.GridLimits.CellX,State.GridLimits.CellY);
+			newState.StonesLocations=(Hashtable<String, CellPosition>) State.StonesLocations.clone();
+			newState.WarriorsLocations=(Hashtable<String, CellPosition>) State.WarriorsLocations.clone();
+
+					
+			newState.ThanosLocation=new CellPosition(State.ThanosLocation.CellX,State.ThanosLocation.CellY);
 			if(State.StonesLocations.isEmpty()) {
            // System.out.println("Stones are empty");
 			child=new Node(n,newState,new EndGameOperator(this.Cost,this.Type));

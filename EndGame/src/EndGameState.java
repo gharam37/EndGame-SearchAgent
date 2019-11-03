@@ -34,6 +34,7 @@ public class EndGameState extends State{
 	{
 		GridLimits=new CellPosition(Integer.parseInt(parts[0].split(",")[0])
 				,Integer.parseInt(parts[0].split(",")[1]));
+		System.out.println(GridLimits);
 		
 
 	}
@@ -114,6 +115,7 @@ public class EndGameState extends State{
 
 	@Override
 	public void Visualize() {
+		//System.out.println(GridLimits);
 
 		for(int x=0;x<GridLimits.CellX;x++) {
 			for(int y=0;y<GridLimits.CellY;y++) {

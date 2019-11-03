@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Stack;
 
 public abstract class GenericProblem {
 	
@@ -98,6 +99,8 @@ public abstract class GenericProblem {
 	
 	String DisplaySolution(Node n,int totalNodes,boolean Visualize)
 	{
+		//Printing Stack
+		Stack<State> States=new Stack<State>();
 		Node current=n;
 		String Solution="";
 		double TotalCost=n.Cost;
@@ -105,7 +108,7 @@ public abstract class GenericProblem {
 		{
 			if(Visualize)
 			{
-				current.CurrentState.Visualize();
+				States.add(current.CurrentState);
 			}
 			//Solution=current.Operator.Type.toLowerCase()+" ("+current.Cost+") "+Solution;
 			Solution=current.Operator.Type.toLowerCase()+","+Solution;
@@ -115,6 +118,16 @@ public abstract class GenericProblem {
 			
 			
 		}
+		States.add(current.CurrentState);
+		
+		if(Visualize)
+		{
+			while(!States.isEmpty()) {
+				States.pop().Visualize();
+				
+			}
+		}
+		
 		Solution=Solution.substring(0,(Solution.length())-1);
 		Solution+=";"+TotalCost;
 
