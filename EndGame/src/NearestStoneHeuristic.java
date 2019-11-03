@@ -7,6 +7,7 @@ public class NearestStoneHeuristic extends MainHeuristic{
 		EndGameState s=(EndGameState) node.CurrentState;
 	 Hashtable<String,CellPosition> StonesLocations=s.StonesLocations;
 	 CellPosition IronManLocation=s.IronManLocation;
+	 CellPosition ThanosPosition=s.ThanosLocation;
 			 
 	    //Get distance to the nearest stone
 	 //System.out.println(StonesLocations);
@@ -26,6 +27,9 @@ public class NearestStoneHeuristic extends MainHeuristic{
 	    //To avoid overestimation largest distance is ironman(0,0) nearest stone (15,15) smallest distance/6 = 2.3 < 3 actual cost of collecting stone
 	    SmallestDistance = SmallestDistance/(2*3);
 
+	    
+	  
+	    
 		return (int)SmallestDistance;
 	}
 

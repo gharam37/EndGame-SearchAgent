@@ -28,18 +28,19 @@ public class AStarSearch extends StrategyQueue{
 			if(node==null) {
 				return node;
 			}
-			double FrontNodeCost=node.Cost;
+			//double FrontNodeCost=node.Cost;
 			
 			if(States.contains(node.CurrentState.UniqueKey)) {
 				
-				State s= node.CurrentState;
+				/*State s= node.CurrentState;
 				//System.out.println(s.UniqueKey);
 
 			
 				double CurrentCost=s.Cost;
 	            if (FrontNodeCost >= CurrentCost) {
-	            	return null;
-	            }
+	            }*/
+
+            	return null;
 
 				
 			}
