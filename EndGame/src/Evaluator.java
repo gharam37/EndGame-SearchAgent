@@ -1,11 +1,13 @@
 import java.util.Comparator;
 
-public class Evaluator implements Comparator{
+public class Evaluator implements Comparator<Object>{
 	MainHeuristic heuristicFunction;
 	String type;
 	Evaluator(MainHeuristic heuristicFunction, String type) {
         this.heuristicFunction = heuristicFunction;
         this.type=type;
+
+        
     }
 	
 	public int applyGreedy(Node node) {
@@ -21,6 +23,8 @@ public class Evaluator implements Comparator{
 		// TODO Auto-generated method stub
 		Node n1=(Node) o1;
 		Node n2=(Node) o2;
+
+
 		if(type.equals("Greedy")) {
 			return applyGreedy(n1)-applyGreedy(n2);
 		}else {

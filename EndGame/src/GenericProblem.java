@@ -63,7 +63,6 @@ public abstract class GenericProblem {
 
 		while(!queue.isEmpty())
 		{
-			
 			Node currentNode=queue.RemoveFront();
 			if(currentNode==null) 
 			{continue;
@@ -85,7 +84,7 @@ public abstract class GenericProblem {
 			}
 			
 			ArrayList<Node> ExpandedNodes=ExpandNodes(currentNode);
-			totalNodes+=ExpandedNodes.size();
+			totalNodes+=1;
 			//System.out.println("Expanding");
 			queue.EnqueueNodes(ExpandedNodes);
 		}

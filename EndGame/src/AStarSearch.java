@@ -4,19 +4,21 @@ public class AStarSearch extends StrategyQueue{
 
 
 	 PriorityQueue<Node> Nodes;
-	 Evaluator evaluator;
+	 //public MainHeuristic heuristicFunction;
 
 	 public AStarSearch(State initialState, MainHeuristic heuristicFunction) {
-	        super(initialState);
-	        this.evaluator = new Evaluator(heuristicFunction, "AStar");
+	        super(initialState,heuristicFunction);
+
+	       
 
 
 	}
 
 		@Override
    void MakeQueue() {
+			//System.out.println(this.heuristicFunction);
 			// TODO Auto-generated method stub
-	        Nodes = new PriorityQueue<Node>(evaluator);
+	        Nodes = new PriorityQueue<Node>(new Evaluator(PossibleHeuristic, "AStar"));
 
    }
 		@Override

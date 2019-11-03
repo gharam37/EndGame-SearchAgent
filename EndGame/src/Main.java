@@ -7,15 +7,21 @@ public class Main {
 	{
 		 ArrayList<Operator> Operators= new ArrayList<Operator>();
 
-		Operators.add(new EndGameOperator(0,"UP")); // Can Increase if next to warrior , Thanos
-		Operators.add(new EndGameOperator(0,"DOWN"));
-		Operators.add(new EndGameOperator(0,"RIGHT"));
-		Operators.add(new EndGameOperator(0,"LEFT"));
-		Operators.add(new EndGameOperator(0,"COLLECT")); 
-		Operators.add(new EndGameOperator(0,"KILL")); 
-		Operators.add(new EndGameOperator(0,"SNAP")); 
+			Operators.add(new EndGameOperator(0,"KILL")); 
+			Operators.add(new EndGameOperator(0,"SNAP")); 
+
+			Operators.add(new EndGameOperator(0,"UP")); // Can Increase if next to warrior , Thanos
+			Operators.add(new EndGameOperator(0,"DOWN"));
+			Operators.add(new EndGameOperator(0,"RIGHT"));
+			Operators.add(new EndGameOperator(0,"LEFT"));
+
+			Operators.add(new EndGameOperator(0,"COLLECT")); ; 
+			
+
+			ReachingThanosHeuristic FirstHeuristic= new ReachingThanosHeuristic();
+			NearestStoneHeuristic SecondHeuristic= new NearestStoneHeuristic();
 		
-		EndGame endGame=new EndGame(Operators);
+		EndGame endGame=new EndGame(Operators,FirstHeuristic,SecondHeuristic);
 		
 		 return endGame.Search(grid, strategy, visualize);
 		//return strategy;

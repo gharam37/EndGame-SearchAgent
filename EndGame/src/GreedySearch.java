@@ -2,19 +2,16 @@ import java.util.PriorityQueue;
 
 public class GreedySearch extends StrategyQueue{
 	 PriorityQueue<Node> Nodes;
-	 Evaluator evaluator;
 
 	 public GreedySearch(State initialState, MainHeuristic heuristicFunction) {
-	        super(initialState);
-	        this.evaluator = new Evaluator(heuristicFunction, "Greedy");
+	        super(initialState,heuristicFunction);
 
-
-	    }
+	}
 
 		@Override
 		void MakeQueue() {
 			// TODO Auto-generated method stub
-	        Nodes = new PriorityQueue<Node>(evaluator);
+	        Nodes = new PriorityQueue<Node>(new Evaluator(PossibleHeuristic, "Greedy"));
 
 		}
 

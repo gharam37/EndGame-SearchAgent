@@ -2,11 +2,14 @@ import java.util.ArrayList;
 
 public class EndGame extends GenericProblem{
 
-	public EndGame(ArrayList<Operator> Operators) {
+	public EndGame(ArrayList<Operator> Operators,MainHeuristic H1,MainHeuristic H2 ) {
 		super(Operators);
 	
-		this.FirstHeuristic= new ReachingThanosHeuristic();
-		this.SecondHeuristic= new NearestStoneHeuristic();
+		/*this.FirstHeuristic= new ReachingThanosHeuristic();
+		this.SecondHeuristic= new NearestStoneHeuristic();*/
+		this.FirstHeuristic=H1;
+		this.SecondHeuristic=H2;
+
 
 		
 

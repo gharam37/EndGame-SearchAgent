@@ -2,6 +2,7 @@ import java.util.*;
 public abstract class StrategyQueue {
 	State InitialState;
 	HashMap<String,State> States=new HashMap<String,State>  ();
+	MainHeuristic PossibleHeuristic;
 	
 	public StrategyQueue(State InitialState)
 	{
@@ -12,6 +13,17 @@ public abstract class StrategyQueue {
 	     AddNode(FirstNode);
 		
 	}
+	public StrategyQueue(State InitialState,MainHeuristic PossibleHeuristic)
+	{
+		this.InitialState=InitialState;
+		this.PossibleHeuristic=PossibleHeuristic;
+		 this.States = new HashMap<String,State> ();
+	     Node FirstNode = new Node(this.InitialState);
+	    // System.out.println(FirstNode);
+	     MakeQueue();
+	     AddNode(FirstNode);
+	}
+	
 	
 	abstract void MakeQueue();
 

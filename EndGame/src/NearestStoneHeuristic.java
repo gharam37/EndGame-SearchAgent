@@ -9,13 +9,12 @@ public class NearestStoneHeuristic extends MainHeuristic{
 	 CellPosition IronManLocation=s.IronManLocation;
 			 
 	    //Get distance to the nearest stone
-	 CellPosition currentStone=StonesLocations.get(0);
-	 
-	 double SmallestDistance =Math.sqrt((IronManLocation.CellY-currentStone.CellY) * (IronManLocation.CellY-currentStone.CellY)  + 
-			 (IronManLocation.CellX-currentStone.CellX) *(IronManLocation.CellX-currentStone.CellX) );
+	 //System.out.println(StonesLocations);
+ 
+	double  SmallestDistance=-50;
 
-	    for(int i=0;i<StonesLocations.size();i++) {
-		  currentStone=StonesLocations.get(i);
+	    for(String cell: StonesLocations.keySet()) {
+	    	CellPosition currentStone=StonesLocations.get(cell);
 		  double Distance =Math.sqrt((IronManLocation.CellY-currentStone.CellY) * (IronManLocation.CellY-currentStone.CellY)  + 
 					 (IronManLocation.CellX-currentStone.CellX) *(IronManLocation.CellX-currentStone.CellX) );
 		  if(Distance<SmallestDistance) {
