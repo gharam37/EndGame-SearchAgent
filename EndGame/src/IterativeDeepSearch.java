@@ -22,15 +22,15 @@ public class IterativeDeepSearch extends StrategyQueue {
 		         node = Nodes.pop();
 
 	    	 
-		        boolean BeenHere = States.containsKey(node.CurrentState.UniqueKey)
-		                && States.get(node.CurrentState.UniqueKey).depth <= node.Depth;
-		        if( States.get(node.CurrentState.UniqueKey)!=null) {
+		        boolean BeenHere = States.contains(node.CurrentState.UniqueKey);
+		               
+		      /*  if( States.get(node.CurrentState.UniqueKey)!=null) {
 		        	//System.out.println(States.get(node.CurrentState.UniqueKey).depth);
 		        	//System.out.println(this.depth);
 
 		        	
 		        	
-		        }
+		        }*/
 		        boolean CrossedDepth = node.Depth > this.depth;
 		        boolean result= CrossedDepth||BeenHere;
 		        
@@ -39,7 +39,7 @@ public class IterativeDeepSearch extends StrategyQueue {
 
 		        }
 
-		        States.put(node.CurrentState.UniqueKey, node.CurrentState);
+		        States.add(node.CurrentState.UniqueKey);
 		        return node;
 		    }
 	    	 return null;

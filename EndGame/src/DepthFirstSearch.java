@@ -18,10 +18,10 @@ public class DepthFirstSearch extends StrategyQueue{
 	@Override
 	public Node RemoveFront() {
 		Node node=Nodes.pop();
-		if(States.containsKey(node.CurrentState.UniqueKey)) {
+		if(States.contains(node.CurrentState.UniqueKey)) {
 			return null;
 		}
-		States.put(node.CurrentState.UniqueKey,node.CurrentState );
+		States.add(node.CurrentState.UniqueKey);
 		return node;
 	}
 

@@ -24,9 +24,9 @@ public class GreedySearch extends StrategyQueue{
 			}
 			double FrontNodeCost=node.Cost;
 			
-			if(States.containsKey(node.CurrentState.UniqueKey)) {
+			if(States.contains(node.CurrentState.UniqueKey)) {
 				
-				State s= States.get(node.CurrentState.UniqueKey);
+				State s= node.CurrentState;
 				//System.out.println(s.UniqueKey);
 
 			
@@ -37,7 +37,7 @@ public class GreedySearch extends StrategyQueue{
 
 				
 			}
-			States.put(node.CurrentState.UniqueKey,node.CurrentState );
+			States.add(node.CurrentState.UniqueKey );
 			return node;
 			
 		}
